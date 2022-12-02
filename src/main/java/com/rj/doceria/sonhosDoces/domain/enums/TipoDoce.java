@@ -1,4 +1,4 @@
-package com.rj.doceria.sonhosDoces.enums;
+package com.rj.doceria.sonhosDoces.domain.enums;
 
 public enum TipoDoce {
     COMUM,

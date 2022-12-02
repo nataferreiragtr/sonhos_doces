@@ -1,7 +1,7 @@
-package com.rj.doceria.sonhosDoces.model;
+package com.rj.doceria.sonhosDoces.domain.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.rj.doceria.sonhosDoces.enums.TipoDoce;
+import com.rj.doceria.sonhosDoces.domain.enums.TipoDoce;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -31,5 +31,5 @@ public class Produto {
     private int qntd;
 
     @Column(nullable = false)
-    private double price;
+    private double preco;
 }
