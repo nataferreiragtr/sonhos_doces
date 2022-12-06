@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
 import javax.persistence.*;
 import java.util.UUID;
 
@@ -15,16 +16,17 @@ import java.util.UUID;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Produto {
+public class Doce {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID produtoId;
+    private UUID doceId;
 
     @Column(nullable = false)
     private String nome;
 
     @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
     private TipoDoce tipoDoce;
 
     @Column(nullable = false)
