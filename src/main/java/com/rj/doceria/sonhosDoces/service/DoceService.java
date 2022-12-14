@@ -30,4 +30,5 @@ public class DoceService {
     public void deleteById(UUID id){
         doceRepository.deleteById(id);
     }
+
 }

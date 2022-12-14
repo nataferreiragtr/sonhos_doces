@@ -1,7 +1,6 @@
-package com.rj.doceria.sonhosDoces.app.controller;
+package com.rj.doceria.sonhosDoces.app.controllers;
 
 import com.rj.doceria.sonhosDoces.domain.model.Doce;
-import com.rj.doceria.sonhosDoces.repository.DoceRepository;
 import com.rj.doceria.sonhosDoces.service.DoceService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -16,8 +15,8 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping(path = "rh")
-@Tag(name = "Doce RH Controller", description = "Controladora que gere o cadastro de doces")
+@RequestMapping(path = "doceria")
+@Tag(name = "Doceria Sonhos Doces Controller", description = "Controladora que gere o cadastro de doces")
 public class DoceController {
 
     private final DoceService doceService;
@@ -32,7 +31,7 @@ public class DoceController {
         return new ResponseEntity<>(doceService.save(doce), HttpStatus.CREATED);
     }
 
-    @GetMapping(value = "/doce", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/doces", produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(summary = "Lista doces", responses = {@ApiResponse(description = "Sucesso ao listar os doces", responseCode = "200", content = @Content)})
     ResponseEntity<List<Doce>> findAll(){
         return new ResponseEntity<>(doceService.findAll(), HttpStatus.OK);
@@ -57,4 +56,5 @@ public class DoceController {
         doceService.deleteById(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
 }
