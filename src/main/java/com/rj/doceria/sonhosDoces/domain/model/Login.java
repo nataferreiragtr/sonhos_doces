@@ -4,6 +4,7 @@ package com.rj.doceria.sonhosDoces.domain.model;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 import org.hibernate.Hibernate;
+import org.hibernate.annotations.ColumnTransformer;
 
 import javax.persistence.*;
 import java.util.Objects;
@@ -12,7 +13,9 @@ import java.util.UUID;
 @Entity
 @Table(name = "login")
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@Data
+@Getter
+@Setter
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 public class Login {
@@ -26,7 +29,8 @@ public class Login {
     @Column(nullable = false, unique = true)
     private String email;
 
-    @Column(nullable = false, columnDefinition = "TEXT")
+    @ColumnTransformer(forColumn = "senha", read = "pgp_sym_decrypt(senha::bytea, 'password')", write = "pgp_sym_encrypt(?, 'password')")
+    @Column(name = "senha", columnDefinition = "bytea", nullable = false)
     private String senha;
 
     @Override

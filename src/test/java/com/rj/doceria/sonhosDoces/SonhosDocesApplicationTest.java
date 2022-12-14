@@ -1,10 +1,8 @@
-package com.rj.doceria.docesSonhos;
+package com.rj.doceria.sonhosDoces;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootConfiguration
 @SpringBootTest
 public class SonhosDocesApplicationTest {
 
