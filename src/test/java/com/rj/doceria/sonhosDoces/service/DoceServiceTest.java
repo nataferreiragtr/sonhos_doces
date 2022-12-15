@@ -78,9 +78,8 @@ public class DoceServiceTest {
         var doceService = new DoceService(doceRepository);
 
         var doce = doceRepository.save((new Doce(UUID.randomUUID(), "Bolo", TipoDoce.COMUM, 10, 20)));
-        doceService.save(doce);
 
-        doceService.deleteById(doce.getDoceId());
+        doceService.deleteById(doceService.save(doce).getDoceId());
 
         assertEquals(0, doceRepository.count());
     }
