@@ -16,6 +16,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
@@ -99,5 +100,29 @@ public class DoceControllerTest {
         doNothing().when(doceServiceMock).deleteById(any(UUID.class));
 
         mockMvc.perform(delete("/doceria/doce/" + doce.getDoceId()).contentType(MediaType.APPLICATION_JSON)).andExpect(status().isNoContent());
+    }
+
+    @Test
+    void deleteAll() throws Exception{
+        var doce = new Doce(UUID.randomUUID(), "Bolo", TipoDoce.COMUM, 10, 20);
+        var doce2 =  new Doce(UUID.randomUUID(), "Torta", TipoDoce.COMUM, 10, 20);
+        var doceServiceMock = mock(DoceService.class);
+        doNothing().when(doceServiceMock).deleteAll();
+
+        mockMvc.perform(delete("/doceria/doces").contentType(MediaType.APPLICATION_JSON)).andExpect(status().isNoContent());
+
+    }
+    @Test
+    void deleteDoces() throws Exception{
+        List<Doce> doceList = new ArrayList<>();
+        doceList.add(new Doce(UUID.randomUUID(), "Bolo", TipoDoce.COMUM, 10, 20));
+        doceList.add(new Doce(UUID.randomUUID(), "Pudim", TipoDoce.DOCE_DE_LEITE, 1, 5));
+
+        var doceServiceMock = mock(DoceService.class);
+        doNothing().when(doceServiceMock).deleteDoces(doceList);
+
+        mockMvc.perform(delete("/doceria/doces").contentType(MediaType.APPLICATION_JSON)).andExpect(status().isNoContent());
+
+
     }
 }

@@ -57,4 +57,18 @@ public class DoceController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
+    @DeleteMapping(value = "/doces", produces = MediaType.APPLICATION_JSON_VALUE)
+    @Operation(summary = "Exclui todos os doces", responses = {@ApiResponse(description = "Sucesso ao apagar todos os doces", responseCode = "204", content = @Content)})
+    ResponseEntity<List<Doce>> deleteAll(){
+        doceService.deleteAll();
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @DeleteMapping(value = "/doces/{List}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @Operation(summary = "Exclui uma lista de doces", responses = {@ApiResponse(description = "Sucesso ao apagar a lista de doces", responseCode = "204", content = @Content)})
+    ResponseEntity<List<Doce>> deleteDoces(@RequestBody List<Doce> doces){
+        doceService.deleteDoces(doces);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
 }

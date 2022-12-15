@@ -4,5 +4,6 @@ public enum TipoDoce {
     COMUM,
     CHOCOLATE,
     LARANJA,
-    DOCE_DE_LEITE;
+    DOCE_DE_LEITE,
+    GOURMET;
 }

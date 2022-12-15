@@ -31,4 +31,9 @@ public class DoceService {
         doceRepository.deleteById(id);
     }
 
+    public void deleteAll(){ doceRepository.deleteAll();}
+
+    public void deleteDoces(List<Doce> doces){
+        doceRepository.deleteAll(doces);
+    }
 }

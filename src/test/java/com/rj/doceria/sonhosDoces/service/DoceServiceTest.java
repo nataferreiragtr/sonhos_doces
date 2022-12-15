@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 //import org.opentest4j.AssertionFailedError;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -56,11 +57,13 @@ public class DoceServiceTest {
 
     @Test
     public void deleteById(){
+        var doceService = new DoceService(doceRepository);
+
         var doce = doceRepository.save((new Doce(UUID.randomUUID(), "Bolo", TipoDoce.COMUM, 10, 20)));
 
-        var doceService = new DoceService(doceRepository);
-        var doceFound = doceService.findById(doce.getDoceId());
+        doceService.deleteById(doceService.save(doce).getDoceId());
 
+        assertEquals(0, doceRepository.count());
     }
 
     @Test
@@ -72,16 +75,23 @@ public class DoceServiceTest {
 
         assertEquals(1.0, doceRepository.count());
     }
+    @Test
+    void deleteAll(){
+        var doceService = new DoceService(doceRepository);
+        var doce = doceRepository.save((new Doce(UUID.randomUUID(), "Bolo", TipoDoce.COMUM, 10, 20)));
+        var doce2 =  doceRepository.save((new Doce(UUID.randomUUID(), "Torta", TipoDoce.COMUM, 10, 20)));
+
+        doceService.deleteAll();
+    }
 
     @Test
-    void delete(){
+    void deleteDoces(){
         var doceService = new DoceService(doceRepository);
+        List<Doce> doceList = new ArrayList<>();
+        doceList.add(new Doce(UUID.randomUUID(), "Bolo", TipoDoce.COMUM, 10, 20));
+        doceList.add(new Doce(UUID.randomUUID(), "Pudim", TipoDoce.DOCE_DE_LEITE, 1, 5));
 
-        var doce = doceRepository.save((new Doce(UUID.randomUUID(), "Bolo", TipoDoce.COMUM, 10, 20)));
-
-        doceService.deleteById(doceService.save(doce).getDoceId());
-
-        assertEquals(0, doceRepository.count());
+        doceService.deleteDoces(doceList);
     }
 
 }
