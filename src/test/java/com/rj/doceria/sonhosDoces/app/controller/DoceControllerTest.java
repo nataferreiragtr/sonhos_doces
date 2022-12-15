@@ -1,4 +1,4 @@
-package com.rj.doceria.sonhosDoces.app.controllers;
+package com.rj.doceria.sonhosDoces.app.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rj.doceria.sonhosDoces.domain.enums.TipoDoce;

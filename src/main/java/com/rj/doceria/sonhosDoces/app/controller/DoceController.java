@@ -1,4 +1,4 @@
-package com.rj.doceria.sonhosDoces.app.controllers;
+package com.rj.doceria.sonhosDoces.app.controller;
 
 import com.rj.doceria.sonhosDoces.domain.model.Doce;
 import com.rj.doceria.sonhosDoces.service.DoceService;
